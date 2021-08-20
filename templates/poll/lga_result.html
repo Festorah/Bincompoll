@@ -1,0 +1,84 @@
+{% extends "poll/base.html" %}
+{% load static %}
+{% block title %} | LGA Result Page{% endblock %}
+
+{% block content %}
+<!-- ======= Breadcrumbs Section ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center" style="color: #91c6f1;">
+          <h2>LGA</h2>
+          <ol>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li>Lga Result</li>
+          </ol>
+        </div>
+        <div class="container py-5">
+
+        <!-- For demo purpose -->
+        <div class="container row text-center text-white py-4">
+          <div style="color: #2c4964;" class="col-lg-7 mx-auto">
+            <h4 class="display-4">LGA's Polling Results</h4>
+          </div>
+        </div>
+        <!-- End -->
+
+    <section id="showcase-inner" class="container showcase-search text-white py-2">
+      <div class="container">
+        <div style="padding: 0 70px;" class="row text-center">
+          <div class="col-md-12">
+            <form action="{% url 'lga-result' %}">
+
+              <!-- Form Row 2 -->
+              <div class="form-row">
+
+                <div class="col-md-12 mb-3">
+                  <label class="sr-only">LGA's in Delta State</label>
+                  <select name="lga_name" class="form-control">
+                    <option selected="true" disabled="disabled">LGA's</option>
+                   {% for lga in lgas %}
+                    <option value="{{ lga.lga_name }}">{{ lga.lga_name }}</option>
+                   {% endfor %}
+                  </select>
+                </div>
+              </div>
+              <button class="btn btn-secondary btn-block mt-4" type="submit">Submit form</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+      <h3 class="text-center pt-3">Result for {{ lga_name }}</h3>
+
+      <div class="container row text-center text-white py-4">
+        <div class="card-body">
+          <table id="example1" class="table table-bordered table-striped">
+            <thead>
+            <tr>
+              <th>Sum from Polling Units</th>
+              <th>Announced LGA Score</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr>
+              <td>{{ lga_total_score }}</td>
+              <td>{{ announced_lga_result_sum }}</td>
+            </tr>
+
+            </tbody>
+            <tfoot>
+            <!-- <tr>
+              <th>Total</th>
+              <th>{{ polling_result_sum }}</th>
+            </tr> -->
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </section>
+{% endblock content %}

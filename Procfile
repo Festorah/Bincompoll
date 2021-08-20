@@ -1,0 +1,1 @@
+web: gunicorn Bincompoll.wsgi --log-file -

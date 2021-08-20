@@ -1,0 +1,94 @@
+{% extends "poll/base.html" %}
+{% load static %}
+{% block title %} | Create Polling Unit{% endblock %}
+
+{% block content %}
+<!-- ======= Breadcrumbs Section ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center" style="color: #91c6f1;">
+          <h2>Polls</h2>
+          <ol>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li>Create</li>
+          </ol>
+        </div>
+        <div class="container py-5">
+
+
+          <!-- For demo purpose -->
+          <div class="container row text-center text-white py-4">
+            <div style="color: #2c4964;" class="col-lg-7 mx-auto">
+              <h3 class="display-4">Create Polling Unit</h3>
+            </div>
+          </div>
+          <!-- End -->
+
+        </div>
+
+
+        <div class="row justify-content-center">
+          <!-- left column -->
+          <div class="col-md-8">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <!-- form start -->
+              <form role="form" method="POST" action="{% url 'store' %}">
+                {% csrf_token %}
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Unique ID</label>
+                    <input type="text" name="unique_id" required class="form-control" value="{{ unique_id }}" id="exampleInputEmail1">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Polling Unit ID</label>
+                    <input type="text" name="polling_unit_id" class="form-control" id="exampleInputPassword1">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Ward ID</label>
+                    <input type="text" name="ward_id" class="form-control" id="exampleInputEmail1">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">LGA ID</label>
+                    <input type="text" name="lga_id" class="form-control" required id="exampleInputPassword1" >
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Unique Ward ID</label>
+                    <input type="text" name="unique_ward_id" class="form-control" id="exampleInputEmail1" >
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Polling Unit Number</label>
+                    <input type="text" name="polling_unit_number" class="form-control" id="exampleInputPassword1" >
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Polling Unit Name</label>
+                    <input type="text" name="polling_unit_name" class="form-control" id="exampleInputEmail1" >
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Polling Unit Description</label>
+                    <input type="text" name="polling_unit_description" class="form-control" id="exampleInputPassword1">
+                  </div>
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Create</button>
+                </div>
+              </form>
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+
+
+
+
+        </div>
+      </div>
+    </section>
+
+
+
+
+{% endblock content %}

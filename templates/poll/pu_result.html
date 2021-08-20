@@ -1,0 +1,81 @@
+{% extends "poll/base.html" %}
+{% load static %}
+{% block title %} | Search Polling {% endblock %}
+
+{% block content %}
+<!-- ======= Breadcrumbs Section ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center" style="color: #91c6f1;">
+          <h2>Poll Results</h2>
+          <ol>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li>Results</li>
+          </ol>
+        </div>
+        <div class="container py-5">
+
+          <!-- For demo purpose -->
+          <div class="container row text-center text-white py-4">
+            <div style="color: #2c4964;" class="col-lg-7 mx-auto">
+              <h6 class="display-4">Search for Results</h6>
+            </div>
+          </div>
+          <!-- End -->
+
+    <section id="showcase-inner" class="container showcase-search text-white py-2">
+      <div class="container">
+        <div style="padding: 0 70px;" class="row text-center">
+          <div class="col-md-12">
+            <form action="{% url 'pu-result' %}">
+
+              <!-- Form Row 2 -->
+              <div class="form-row">
+
+                <div class="col-md-12 mb-3">
+                  <label class="sr-only">Polling units</label>
+                  <select name="polling_unit_name" class="form-control">
+                    <option selected="true" disabled="disabled">Polling units</option>
+                   {% for polling_unit in polling_units %}
+                    <option value="{{ polling_unit.polling_unit_name }}">{{ polling_unit.polling_unit_name }}</option>
+                   {% endfor %}
+                  </select>
+                </div>
+              </div>
+              <button class="btn btn-secondary btn-block mt-4" type="submit">Submit form</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+      <div class="container row text-center text-white py-4">
+        <div class="card-body">
+          <h4 style="color: #333">Result for {{ polling_unit_name }} Polling Unit</h4>
+          <table id="example1" class="table table-bordered table-striped">
+            <thead>
+            <tr>
+              <th>Party Name</th>
+              <th>Party Score</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for result in results %}
+            <tr>
+              <td>{{ result.party_abbreviation }}</td>
+              <td>{{ result.party_score }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+            <tfoot>
+            <tr>
+              <th>Total</th>
+              <th>{{ polling_result_sum }}</th>
+            </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </section>
+{% endblock content %}

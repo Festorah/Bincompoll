@@ -1,0 +1,72 @@
+{% extends "poll/base.html" %}
+{% load static %}
+{% block title %} | Create Polling Unit{% endblock %}
+
+{% block content %}
+<!-- ======= Breadcrumbs Section ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center" style="color: #91c6f1;">
+          <h2>Polls</h2>
+          <ol>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li>Create</li>
+          </ol>
+        </div>
+        <div class="container py-5">
+
+
+          <!-- For demo purpose -->
+          <div class="container row text-center text-white py-4">
+            <div style="color: #2c4964;" class="col-lg-7 mx-auto">
+              <h3 class="display-4">Store Polling Unit Result</h3>
+            </div>
+          </div>
+          <!-- End -->
+
+        </div>
+
+
+        <div class="row justify-content-center">
+          <!-- left column -->
+          <div class="col-md-8">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <!-- form start -->
+              <form role="form" method="POST" action="{% url 'store_new' unique_id %}">
+                {% csrf_token %}
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Unique ID</label>
+                    <input type="text" name="unique_id" value="{{ unique_id }}" required class="form-control" id="exampleInputEmail1">
+                  </div>
+                  {% for party in parties %}
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">{{ party.party_name }}</label>
+                    <input type="text" name="{{ forloop.counter }}{{ party.party_name }}" class="form-control" id="exampleInputPassword1">
+                  </div>
+                  {% endfor %}
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+              </form>
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+
+
+
+
+        </div>
+      </div>
+    </section>
+
+
+
+
+{% endblock content %}
